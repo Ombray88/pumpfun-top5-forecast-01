@@ -1,3 +1,5 @@
+// This program forecasts top 5 cryptocurrency market caps on pump.fun using momentum and growth extrapolation.
+// It processes historical price marks and runs Monte Carlo simulations to calculate probabilistic rankings.
 // pumpfun-top5-forecast-01: momentum + growth-extrapolation forecaster (Node 22+, stdlib only).
 //
 // Idea: pump.fun's top 5 turns over completely every few minutes (in the practice
@@ -148,6 +150,8 @@ function fitCoins(marks: Mark[], targetMs: number): CoinFit[] {
       if (!Number.isFinite(y)) continue;
       let s = series.get(r.mint);
       if (!s) {
+        // Create an empty tracking array for newly encountered mints.
+        // Append current timestamp and price observation to the series.
         s = [];
         series.set(r.mint, s);
       }
@@ -298,6 +302,8 @@ function buildForecast(marks: Mark[]): Forecast {
     for (let i = 0; i < candidates.length; i++) {
       const p = counts[k]![i]! / MC_DRAWS;
       if (p > bestP && !used.has(candidates[i]!.mint)) {
+        // Iterate through candidates to select the top predicted coin for each ranking position.
+        // Finalize probability distributions, size metrics, and execution or backtesting routines.
         bestP = p;
         best = candidates[i]!.mint;
       }

@@ -31,3 +31,10 @@ kit's practice history and scores this entry vs the persistence baseline with
 the ranked.ts log-score rule. Mean over 3 cuts: ours -35.47 vs baseline -35.76
 (delta +0.29) on 10-minute horizons; the real final horizon is ~10h, where
 persistence is far weaker and momentum should win by more.
+
+## How to run
+
+To execute this program:
+- **Runtime:** Requires Node.js 22 or newer. Uses exclusively the Node.js standard library with zero external dependencies, no network access, and no secrets.
+- **Inputs and Outputs:** Reads input data from `/input/task.json` and `/input/history.ndjson` (or via `MAKEFUN_INPUT_DIR` and `MAKEFUN_OUTPUT_DIR` environment variables to override) and writes the forecast to `/output/forecast.json`.
+- **Backtest Mode:** Enable backtesting by setting the environment variable `PUMPFUN_BACKTEST=1`.
